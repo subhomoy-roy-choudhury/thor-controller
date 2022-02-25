@@ -1,11 +1,15 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import FolderCards from './components/folder_cards.js';
+import Navbar from './components/navbar.js';
 
 export default function Home() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div>
+      <Navbar/>
+      <h1 className="text-3xl font-bold text-center pt-5">
+        Integrated Scripts
+      </h1>
+      <FolderCards />
+    </div>
+
   )
 }
