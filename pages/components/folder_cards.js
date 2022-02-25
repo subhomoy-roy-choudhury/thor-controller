@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import AddFolderModal from '../components/add_folder_modal'
 
 export default function FolderCards() {
     const [url, setURL] = useState('')
@@ -18,17 +19,10 @@ export default function FolderCards() {
              });
     }, [backend_url])
 
-    const add_folder = async () => {
-        window.location.reload()
-    }
-
     return (
         <section className='m-10'>
-            <button onClick={add_folder} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Add Folder
-            </button>
-
-            <div className='flex flex-row'>
+            <AddFolderModal />
+            <div className='flex flex-wrap mx-4 justify-left'>
                 {Object.entries(data).map(([key, value]) => (
                     <div key={key} className="py-6 pl-6 pr-20 mt-10 mr-10 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                         <a href="#">
