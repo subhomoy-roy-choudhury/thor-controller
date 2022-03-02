@@ -1,10 +1,12 @@
+import Layout from "./components/layout"
+
 export default function About() {
     return (
-      <div>
+      <Layout>
           <h1 className="text-3xl font-bold text-center pt-5">
             About
         </h1>
-      </div>
+      </Layout>
   
     )
   }

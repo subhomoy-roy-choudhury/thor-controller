@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export default function AddFolderModal() {
+export default function DeleteFolderModal() {
 
-    const add_folder = async (folder_name) => {
-        const backend_url = `${localStorage.getItem('ngrok-url')}/api/script_builder/add/folder/`
+    const deleteFolder = async (folder_name) => {
+        // event.preventDefault() // don't redirect the page
+        const backend_url = `${localStorage.getItem('ngrok-url')}/api/script_builder/delete/folder/`
         axios.post(backend_url,{
-            'folder_name' : folder_name
+            'folder_name' : `scripts_folder/${folder_name}`
         })
         .then(response => {
             console.log(response.data);
@@ -15,26 +16,23 @@ export default function AddFolderModal() {
         .catch((err) => {
             console.log('catch', err);
         });
-    }
+      }    
 
     const [showModal, setShowModal] = React.useState(false);
 
-    const addFolderForm = event => {
+    const deleteFolderForm = event => {
         event.preventDefault() // don't redirect the page
         // where we'll add our form logic
-        add_folder(event.target.folder_name.value)
+        deleteFolder(event.target.folder_name.value)
       }    
 
 
   return (
     <>
-      <button
-        className="ml-4 bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-        onClick={() => setShowModal(true)}
-      >
-        Add Folder
-      </button>
+        <button onClick={() => setShowModal(true)} className="inline-flex items-center py-2 px-3 mt-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Delete
+            <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+        </button>
       {showModal ? (
         <>
           <div
@@ -42,7 +40,7 @@ export default function AddFolderModal() {
           >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
-              <form onSubmit={addFolderForm}>
+              <form onSubmit={deleteFolderForm}>
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                     {/*header*/}
                     <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">

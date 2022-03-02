@@ -1,14 +1,15 @@
 import FolderCards from './components/folder_cards.js';
-import Navbar from './components/navbar.js';
+import Layout from './components/layout';
 
 export default function Home() {
   return (
     <div>
-      <Navbar/>
-      <h1 className="text-3xl font-bold text-center pt-5">
-        Integrated Scripts
-      </h1>
-      <FolderCards />
+      <Layout>
+        <h1 className="text-3xl font-bold text-center pt-5">
+          Integrated Scripts
+        </h1>
+        <FolderCards />
+      </Layout>
     </div>
 
   )
